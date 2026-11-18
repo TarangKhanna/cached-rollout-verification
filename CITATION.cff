@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "Cite this technical note and version if using these artifacts; not peer reviewed."
+type: software
+title: "A Conditional-Proposal Pitfall in Cached-Rollout Speculative Verification: Worked Examples and Controls"
+authors:
+  - family-names: Khanna
+    given-names: Tarang
+version: 0.2.0
+repository-code: "https://github.com/TarangKhanna/cached-rollout-verification"
+abstract: "Reproducible technical exposition of established conditional-proposal dependence, with worked examples and controls; not an original RL research claim. Substantive AI assistance is disclosed in AI_ASSISTANCE.md. No source-faithful full-policy training was performed."
+license: MIT

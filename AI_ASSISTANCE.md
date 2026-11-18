@@ -1,0 +1,3 @@
+# AI assistance
+
+OpenAI systems, including ChatGPT and Codex, and Anthropic Claude systems, including Opus and Fable, provided substantive assistance in research exploration, mathematical derivations, coding, experimental analysis, literature review, criticism, and manuscript drafting and revision. AI systems originated or developed parts of the constructions, proofs, implementations, and prose; their contributions were not limited to editing. The retained record documents human direction but does not establish independent human derivation or verification of every result. Executable checks and model criticism are not human verification or peer review. No AI system is an author. Independent human mathematical verification has not been certified.

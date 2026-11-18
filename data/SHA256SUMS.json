@@ -1,0 +1,10 @@
+{
+  "data/batch/DERIVED_SUMMARY.json": "a2e780ca218dc60e5a9e8d3913aa269a4c8ff3ebe6a1cd4be4ef42f71bf17a2c",
+  "data/batch/PROTOCOL.md": "08f423d7c5914a7f08442237554758cb82d1be7b51a2d613af961a40c05266e7",
+  "data/batch/qualification.jsonl": "9186922ece05561961f3973ac5600cb1345222afc31091c34e481c98911b2ae4",
+  "data/exploratory/batch_sweep.txt": "943ed299b56c5b0b47adb04b9bf697093e47136bf46cec227caed799ceadaeec",
+  "data/finite_exact_values.json": "091cacf4fbd32d2ae04cee904621eb045021514f68c5a45369f316d708eec822",
+  "data/readout/calibration.json": "a683d8b89faa2e2a7223c9bc8e288cee2cafced30d7f6be0ffc2045935b292f9",
+  "data/readout/replica_metrics.json": "4c335db2c865907edf9d4cfa4caf6931a4a357aa0f4f68642fe8aee163c90a25",
+  "data/readout/results.json": "2f097ef13b4c2ff5df5fc669a1982cc00e2f10f9fb78c60987f9bac4c96ba42b"
+}

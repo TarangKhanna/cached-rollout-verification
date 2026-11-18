@@ -1,0 +1,14 @@
+eta=0.05 B= 1 included_minus_fresh=-0.01209642 +/- 0.00177739 (95% approx) B*delta=-0.0120964
+eta=0.05 B= 2 included_minus_fresh=-0.00641492 +/- 0.00086023 (95% approx) B*delta=-0.0128298
+eta=0.05 B= 4 included_minus_fresh=-0.00324987 +/- 0.00043515 (95% approx) B*delta=-0.0129995
+eta=0.05 B= 8 included_minus_fresh=-0.00164443 +/- 0.00021967 (95% approx) B*delta=-0.0131554
+eta=0.05 B=16 included_minus_fresh=-0.00083524 +/- 0.00011077 (95% approx) B*delta=-0.0133638
+eta=0.05 B=32 included_minus_fresh=-0.00046198 +/- 0.00005736 (95% approx) B*delta=-0.0147834
+eta=0.05 B=64 included_minus_fresh=-0.00020743 +/- 0.00002679 (95% approx) B*delta=-0.0132756
+eta=0.20 B= 1 included_minus_fresh=-0.04967255 +/- 0.00619219 (95% approx) B*delta=-0.0496725
+eta=0.20 B= 2 included_minus_fresh=-0.02418858 +/- 0.00340457 (95% approx) B*delta=-0.0483772
+eta=0.20 B= 4 included_minus_fresh=-0.01162630 +/- 0.00165439 (95% approx) B*delta=-0.0465052
+eta=0.20 B= 8 included_minus_fresh=-0.00629778 +/- 0.00084399 (95% approx) B*delta=-0.0503822
+eta=0.20 B=16 included_minus_fresh=-0.00339974 +/- 0.00042565 (95% approx) B*delta=-0.0543959
+eta=0.20 B=32 included_minus_fresh=-0.00158814 +/- 0.00020798 (95% approx) B*delta=-0.0508205
+eta=0.20 B=64 included_minus_fresh=-0.00086140 +/- 0.00010808 (95% approx) B*delta=-0.0551298

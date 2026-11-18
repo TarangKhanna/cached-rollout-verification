@@ -1,0 +1,130 @@
+[
+  {
+    "eta": 0.0,
+    "B": 1,
+    "matched_filtered_vector_norm": 0.0,
+    "approx95_filtered_norm_upper_accounting_denominator": 0.0,
+    "yield_ratio_lower_approx95": 0.9523361912626548,
+    "fallback_reserve_gradient_relative": 0.0
+  },
+  {
+    "eta": 0.0,
+    "B": 8,
+    "matched_filtered_vector_norm": 0.0,
+    "approx95_filtered_norm_upper_accounting_denominator": 0.0,
+    "yield_ratio_lower_approx95": 0.975891176776039,
+    "fallback_reserve_gradient_relative": 0.0
+  },
+  {
+    "eta": 0.0,
+    "B": 32,
+    "matched_filtered_vector_norm": 0.0,
+    "approx95_filtered_norm_upper_accounting_denominator": 0.0,
+    "yield_ratio_lower_approx95": 0.9647968773897831,
+    "fallback_reserve_gradient_relative": 0.0
+  },
+  {
+    "eta": 0.0,
+    "B": 128,
+    "matched_filtered_vector_norm": 0.0,
+    "approx95_filtered_norm_upper_accounting_denominator": 0.0,
+    "yield_ratio_lower_approx95": 0.9481873187338915,
+    "fallback_reserve_gradient_relative": 0.0
+  },
+  {
+    "eta": 0.05,
+    "B": 1,
+    "matched_filtered_vector_norm": 0.006624853399053877,
+    "approx95_filtered_norm_upper_accounting_denominator": 0.010198422576031128,
+    "yield_ratio_lower_approx95": 0.9141480000312732,
+    "fallback_reserve_gradient_relative": 0.00507388437761477
+  },
+  {
+    "eta": 0.05,
+    "B": 8,
+    "matched_filtered_vector_norm": 0.0010382124503764106,
+    "approx95_filtered_norm_upper_accounting_denominator": 0.0014378277012865764,
+    "yield_ratio_lower_approx95": 0.9639160311572846,
+    "fallback_reserve_gradient_relative": 0.005380328447547046
+  },
+  {
+    "eta": 0.05,
+    "B": 32,
+    "matched_filtered_vector_norm": 0.00020901565610931125,
+    "approx95_filtered_norm_upper_accounting_denominator": 0.0003042121868614678,
+    "yield_ratio_lower_approx95": 0.9408364045418253,
+    "fallback_reserve_gradient_relative": 0.005276702005239079
+  },
+  {
+    "eta": 0.05,
+    "B": 128,
+    "matched_filtered_vector_norm": 6.435557108584024e-05,
+    "approx95_filtered_norm_upper_accounting_denominator": 8.857168243097642e-05,
+    "yield_ratio_lower_approx95": 0.9404845501201022,
+    "fallback_reserve_gradient_relative": 0.00532693429649867
+  },
+  {
+    "eta": 0.2,
+    "B": 1,
+    "matched_filtered_vector_norm": 0.021521228582552083,
+    "approx95_filtered_norm_upper_accounting_denominator": 0.034239698221996365,
+    "yield_ratio_lower_approx95": 0.8787426754916731,
+    "fallback_reserve_gradient_relative": 0.018564408124667493
+  },
+  {
+    "eta": 0.2,
+    "B": 8,
+    "matched_filtered_vector_norm": 0.00377634911269123,
+    "approx95_filtered_norm_upper_accounting_denominator": 0.005256565196868656,
+    "yield_ratio_lower_approx95": 0.9616519234905422,
+    "fallback_reserve_gradient_relative": 0.018962509071769305
+  },
+  {
+    "eta": 0.2,
+    "B": 32,
+    "matched_filtered_vector_norm": 0.0009868295226104675,
+    "approx95_filtered_norm_upper_accounting_denominator": 0.0013704114794669893,
+    "yield_ratio_lower_approx95": 0.9648523192650424,
+    "fallback_reserve_gradient_relative": 0.019429754104395517
+  },
+  {
+    "eta": 0.2,
+    "B": 128,
+    "matched_filtered_vector_norm": 0.00020321459640975086,
+    "approx95_filtered_norm_upper_accounting_denominator": 0.00028938100407216737,
+    "yield_ratio_lower_approx95": 0.948478481408239,
+    "fallback_reserve_gradient_relative": 0.019485982710411246
+  },
+  {
+    "eta": 0.8,
+    "B": 1,
+    "matched_filtered_vector_norm": 0.07556105445449811,
+    "approx95_filtered_norm_upper_accounting_denominator": 0.12997090733046582,
+    "yield_ratio_lower_approx95": 0.720523126626458,
+    "fallback_reserve_gradient_relative": 0.07594171813089091
+  },
+  {
+    "eta": 0.8,
+    "B": 8,
+    "matched_filtered_vector_norm": 0.010814504023273854,
+    "approx95_filtered_norm_upper_accounting_denominator": 0.015077981596340554,
+    "yield_ratio_lower_approx95": 0.9534347989578917,
+    "fallback_reserve_gradient_relative": 0.07402804665479444
+  },
+  {
+    "eta": 0.8,
+    "B": 32,
+    "matched_filtered_vector_norm": 0.002693343684863509,
+    "approx95_filtered_norm_upper_accounting_denominator": 0.0037454052360162684,
+    "yield_ratio_lower_approx95": 0.9603385839814103,
+    "fallback_reserve_gradient_relative": 0.07430129997898076
+  },
+  {
+    "eta": 0.8,
+    "B": 128,
+    "matched_filtered_vector_norm": 0.0007304165955838061,
+    "approx95_filtered_norm_upper_accounting_denominator": 0.0009767538478904826,
+    "yield_ratio_lower_approx95": 0.9808817222481235,
+    "fallback_reserve_gradient_relative": 0.07425850729788282
+  }
+]

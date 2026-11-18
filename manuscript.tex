@@ -1,0 +1,83 @@
+\documentclass[10pt]{article}
+\usepackage[a4paper,margin=0.72in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb,booktabs,array}
+\usepackage[round,authoryear]{natbib}
+\usepackage{xurl,xcolor}
+\usepackage[colorlinks=true,allcolors=blue!50!black]{hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\setlength{\emergencystretch}{2em}
+\newcommand{\TV}{\operatorname{TV}}
+\newcommand{\KL}{\operatorname{KL}}
+\newcommand{\EE}{\mathbb E}
+\title{\vspace{-1.3cm}\textbf{A Conditional-Proposal Pitfall in Cached-Rollout\\Speculative Verification: Worked Examples and Controls}}
+\author{Tarang Khanna}
+\date{Technical exposition \;\textperiodcentered\; 18 November 2026}
+\begin{document}
+\maketitle\vspace{-0.7em}
+\begin{abstract}
+\citet[Appendix C.1]{arnal2026} already identify the dependence between reused samples and policies they helped train; adaptive-data theory supplies the broader context. This exposition illustrates that established conditional-proposal problem with executable one-token examples. A single-sample REINFORCE update gives a limiting reward discrepancy of $1/8$ under exact residual verification; a three-response standardized-score specialization gives $7/32$, or $7/64$ with ordinary-target rejection fallback. These calculations do not establish new general principles, an impossibility of speculative sampling, or degradation of released SPEC-RL. Existing finite and frozen-readout controls provide substantial negative or inconclusive evidence about practical importance.
+\end{abstract}
+
+\section{The proposal law is conditional}
+The distinction is classical: a sample's nominal generating law need not equal its law after conditioning on an estimator that used it \citep{arnal2026,russo2016}. We offer worked illustrations, not an original RL research claim. Let $q>0$ be a declared proposal, $p$ a fixed realized target, and $h=\Pr(Y=\cdot\mid p,H)$ the actual cache law, with exogenous $H$ fixing the old actor, prompt and sampling transforms. Use processed sampling probabilities and fresh independent verifier randomness. Standard speculative sampling \citep{leviathan2023} uses
+\[
+ a_y=\min(1,p_y/q_y),\quad Z=\TV(p,q),\quad r=(p-q)_+/Z,\quad
+ K(y,x)=a_y\mathbf1_{x=y}+(1-a_y)r_x.
+\]
+When $p=q$, $K$ is the identity and the residual is unused. Accepted and residual masses give $qK=p$, whereas for $d=h-q$,
+\begin{equation}\label{eq:identity}
+ hK-p=d\odot a-(d\cdot a)r,\qquad \TV(hK,p)\le\TV(h,q).
+\end{equation}
+The inequality is common-kernel contraction, not automatic removal of dependence. The fresh comparator is independently sampled from the \emph{same realized} $p$.
+
+\section{A single-sample REINFORCE illustration}
+Let even $N\ge2$, $q(j)=1/N$, and reward $R(j)=\mathbf1_{j\in A}$ with $|A|=N/2$. Draw one training token $Y\sim q$ and use the standard REINFORCE score update \citep{williams1992}, with a fixed baseline, from uniform softmax logits:
+\begin{equation}\label{eq:reinforce}
+ z'_j=2\log2\,(R(Y)-1/2)(\mathbf1_{Y=j}-1/N),\qquad p_Y=\operatorname{softmax}(z').
+\end{equation}
+The baseline is the known old-policy mean reward $1/2$; it is held fixed in the score derivative. The common logit offset cancels. All unsampled weights remain 1; the sampled weight is 2 for $R(Y)=1$ and $1/2$ for $R(Y)=0$. These are strictly positive policies with $\TV(p_Y,q)\le1/N$ and both KL divergences $O(1/N)$. For sampled weight $w$, writing $D=N-1+w$, the KLs are $\log(D/N)-\log(w)/N$ and $(w/D)\log w-\log(D/N)$.
+
+Verify the training-used $Y$ through $K_{p_Y}$. A rewarded token always accepts, so verified reward is 1. An unrewarded token accepts with probability $N/(2N-1)$; the residual is uniform on the other $N-1$ tokens, with reward mass $N/[2(N-1)]$. Its expected verified reward is therefore $N/[2(2N-1)]$. The corresponding fresh reward means are $(N/2+1)/(N+1)$ and $N/(2N-1)$. Averaging the two equally likely input classes gives the finite identity
+\begin{equation}\label{eq:eighth}
+ \EE[R(X)-p_Y(A)]=\frac{N(N-2)}{4(N+1)(2N-1)}\longrightarrow\frac18.
+\end{equation}
+This is a support-growing, fixed-step illustration. Cached-token ratios change substantially even while population distances vanish; it is not a fixed-model, vanishing-step harm result.
+
+\section{Three responses and a different rejection rule}
+For $S\sim q^{\otimes3}$, use detached population-standardized advantages $A_i=(R_i-\bar R)/s$, $s^2=\frac13\sum_i(R_i-\bar R)^2$, with zeros for unanimous rewards. The score step $z'_j=(\eta/3)\sum_iA_i(\mathbf1_{Y_i=j}-1/N)$, $\eta=3\sqrt2\log2$, gives distinct-token weights $(4,1/2,1/2)$ for one positive and $(2,2,1/4)$ for two. Each mixed count has probability $3/8$; collisions have probability at most $3/N$.
+
+Exact residuals have reward one. The two conditional verified reward means tend to $2/3$ and $11/12$, so the overall mean tends to $1/8+(3/8)(2/3+11/12)=23/32$. Fresh reward tends uniformly to $1/2$, leaving $7/32$. This is a worked specialization of the same conditioning issue, not a novel general principle. An actor-matched mixed-output filter leaves $1/12$; it fixes actor survival weights and does not implement a DAPO quota/refill pipeline.
+
+\paragraph{Ordinary-target fallback: precise scope of $7/64$.}
+Replace the residual at rejection by an independent draw from $p_S$. The two mixed conditional reward means now tend to $1/2$ and $19/24$. Thus this \emph{endogenous one-token construction} gives
+\[
+ \EE R(X)\to\frac18+\frac38\left(\frac12+\frac{19}{24}\right)=\frac{39}{64},
+ \qquad \EE[R(X)-p_S(A)]\to\frac7{64}.
+\]
+This is not the error of an independent proposal: for that distinct question, $\widetilde K(y,x)=a_y\mathbf1_{x=y}+(1-a_y)p_x$ obeys $q\widetilde K-p=Z(p-r)$. SPEC-RL's ordinary-target first-rejection continuation and its departure from exact residual correction were already discussed in issue 14 \citep{liu2026specrl,specrlissue2025}. The number $7/64$ is our worked calculation under the stated toy assumptions, not a new discovery of the fallback issue or a measured bias of released training. Sample-standard-deviation stabilizers, clipping, optimizer state, masking and full reached-prefix/cache assembly are not represented here.
+
+\section{Controls, negative evidence and interpretation}
+Independent reserve samples drawn from $q$ independently of the training/selection state satisfy $qK_{p_S}=p_S$ at each actor; fresh samples are a second control. This does not mean that one fixed realized reserve cache equals the fresh population. Group-law claims also need the appropriate joint sampling law. Exact speculative verification is \emph{not fundamentally impossible}. S$^3$R's Proposition 2 preserves response groups under its stated proposal/independence conditions; its Proposition 1 concerns a different failure of response-wise importance weighting with group-dependent advantages \citep{he2026s3r}.
+
+Existing evidence is retained in the repository rather than expanded into a practical-failure claim:
+\begin{itemize}\setlength\itemsep{0pt}\setlength\parskip{0pt}
+\item A four-parameter, three-token exhaustive model has fresh-minus-included population reward gap $0.0011106005$ after a second stochastic score update ($\eta=.05$, second step $.25$), or $0.11106$ percentage points. Matched filtering leaves $0.0003572267$. This is finite SGD, not production GRPO/AdamW.
+\item An archived 16,384-update finite qualification has $B=128$ approximate per-cell 95\% upper bounds $0.0249\%$ and $0.0848\%$ of fresh gradient norm at $\eta=.05/.20$, below its prespecified 5\% threshold. These are normal component-box bounds with estimated denominator; nominal production batch size is not qualified effective $B$.
+\item Archived Qwen first-token frozen-readout statistics at mean $\KL(p\Vert q)=.0090465$ give an inclusion-minus-reserve projected-gradient contrast $-1.4475\%$, interval $[-3.3357\%,0.4515\%]$; the raw estimate is $+0.2612\%$. All 24 saved bootstrap contrasts were recomputed, not neural inference or training. This is inconclusive, not an equivalence result.
+\end{itemize}
+No source-faithful full-policy learning degradation, end-to-end efficiency loss or useful new correction has been demonstrated. The practical lesson is to specify conditioning and compare included caches with independent reserve and fresh controls, while separating residual correctness from fallback mismatch. The contribution here is transparent exposition and reproducible illustrations of established ideas.
+
+\paragraph{Executable demonstrations and provenance.}
+\texttt{python code/worked\_examples.py} compares exact rational dense kernels with separate collision/count formulas and a literal REINFORCE softmax step, reporting $1/8$, $7/32$ and $7/64$. \texttt{bash run\_checks.sh} additionally reproduces existing finite calculations and checks archived batch/readout evidence. No new scientific experiment was launched. Code is independent of the official implementation; inspected source pin: \texttt{97da99ed54d663b238c417c728bc824c79cfab6f}. Original repository material, including this exposition, is MIT-licensed. Automated checks do not establish independent human verification.
+
+\paragraph{AI-assistance disclosure.}
+OpenAI systems, including ChatGPT and Codex, and Anthropic Claude systems, including Opus and Fable, provided substantive assistance in research exploration, mathematical derivations, coding, experimental analysis, literature review, criticism, and manuscript drafting and revision. AI systems originated or developed parts of the constructions, proofs, implementations, and prose; their contributions were not limited to editing. The retained record documents human direction but does not establish independent human derivation or verification of every result. Executable checks and model criticism are not human verification or peer review. No AI system is an author. Independent human mathematical verification has not been certified.
+
+
+\begingroup\small
+\bibliographystyle{abbrvnat}
+\bibliography{references}
+\endgroup
+\end{document}
